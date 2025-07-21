@@ -9,7 +9,7 @@ const Port = Number(process.env.PORT) || 4000;
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  
+
   app.enableCors({
     origin: '*',
     methods: 'GET,POST,PUT,DELETE',
@@ -19,8 +19,8 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'public'));
 
   const config = new DocumentBuilder()
-    .setTitle('Online Marketpleys')
-    .setDescription('The cats API description')
+    .setTitle('Online Marketplace')
+    .setDescription('The API description')
     .setVersion('2.1')
     .addSecurityRequirements('bearer', ['bearer'])
     .addBearerAuth()
@@ -37,8 +37,9 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(Port, () => {
+  await app.listen(Port, '0.0.0.0', () => {
     console.log(`Server started on port ${Port}`);
   });
 }
+
 bootstrap();
