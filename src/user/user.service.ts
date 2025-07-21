@@ -133,7 +133,7 @@ export class UserService {
       }
       let token = this.EmailToken({ email: data.email });
 
-      const resetLink = `https://usmonqulov-abduhamid-5018844.github.io/reset_password/?token=${token}`;
+      const resetLink = `https://reset-password-steel.vercel.app/reset_password/?token=${token}`;
 
       await this.main.sendMail(
         data.email,
