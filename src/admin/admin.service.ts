@@ -3,6 +3,7 @@ import {
   ForbiddenException,
   Injectable,
   NotFoundException,
+  OnModuleInit,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
@@ -22,12 +23,41 @@ import { AdminVerify } from 'src/user/dto/admin.signIn_verify.dt';
 import { Op } from 'sequelize';
 
 @Injectable()
-export class AdminService {
+export class AdminService implements OnModuleInit{
   constructor(
     @InjectModel(User) private readonly Model: typeof User,
     private readonly jwt: UserService,
     private readonly mail: MailService
   ) {}
+
+  async onModuleInit() {
+    const full_name = process.env.SUPPER_ADMIN_FULL_NAME;
+    const phone = process.env.SUPPER_ADMIN_PHONE_NUMBER;
+    const email = String(process.env.SUPPER_ADMIN_EMAIL);
+    const password = String(process.env.SUPPER_ADMIN_PASSWORD);
+  
+    try {
+      const admin = await this.Model.findOne({ where: { email } });
+  
+      if (!admin) {
+        const hash = bcrypt.hashSync(password, 10);
+  
+        await this.Model.create({
+          full_name,
+          email,
+          phone,
+          password: hash,
+          region: "Toshkent",
+          role: Role.SUPER_ADMIN,
+          IsActive: true
+        });
+  
+        console.log('Supper_admin created:');
+      }
+    } catch (error) {
+      console.error('Error creating Super Admin:', error.message);
+    }
+  }
 
   async create(registerUserdto: RegisterUserdto) {
     try {

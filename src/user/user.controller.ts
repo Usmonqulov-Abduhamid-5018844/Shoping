@@ -23,8 +23,8 @@ import { RefreshGuard } from 'src/guard/Refresh_guard.service';
 import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { EmailPassword } from './dto/Email_reset_password';
 
-@ApiTags('Auth')
-@Controller('Auth')
+@ApiTags('users')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
