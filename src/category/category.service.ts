@@ -61,7 +61,6 @@ export class CategoryService {
         order: [[sortColumn, sortOrder]],
         limit,
         offset,
-        include: { model: Product },
       });
 
       return {
