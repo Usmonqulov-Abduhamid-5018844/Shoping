@@ -78,7 +78,6 @@ export class CategoryService {
   async getCategoryById(id: number) {
     try {
       const categoryById = await this.model.findByPk(id, {
-        include: { model: Product },
       });
       if (!categoryById) {
         throw new NotFoundException(`Category by this id:${id} not found`);
