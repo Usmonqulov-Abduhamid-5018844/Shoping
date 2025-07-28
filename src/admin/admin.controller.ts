@@ -71,12 +71,12 @@ export class AdminController {
   delet_accaunt(@Param('id') id: string, @Req() req: Request) {
     return this.adminService.delet_accaunt(+id, req);
   }
-  @UseGuards(AuthGuard, RoleGuard)
-  @Roles(Role.SUPER_ADMIN, Role.ADMIN)
-  @Post('reset_password')
-  reset_password(@Body() data: ResetPasswordDto) {
-    return this.adminService.reset_password(data);
-  }
+  // @UseGuards(AuthGuard, RoleGuard)
+  // @Roles(Role.SUPER_ADMIN, Role.ADMIN)
+  // @Post('reset_password')
+  // reset_password(@Body() data: ResetPasswordDto) {
+  //   return this.adminService.reset_password(data);
+  // }
   @Post('SiginIn')
   SiginIn(@Body() data: LoginUserdto) {
     return this.adminService.SiginIn(data);
