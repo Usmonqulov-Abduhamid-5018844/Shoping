@@ -37,7 +37,7 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(Port, '0.0.0.0', () => {
+  await app.listen(Port ? Port : 4000, '0.0.0.0', () => {
     console.log(`Server started on port ${Port}`);
   });
 }
