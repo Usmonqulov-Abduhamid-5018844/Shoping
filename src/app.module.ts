@@ -100,7 +100,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '..', 'uploads'),
-      serveRoot: '/uploud',
+      serveRoot: '/upload',
     }),
 
     FileModule,

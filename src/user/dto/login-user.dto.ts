@@ -13,7 +13,7 @@ export class LoginUserdto {
   @IsNotEmpty()
   email: string;
 
-  @ApiProperty({ example: '50803006730015' })
+  @ApiProperty({ example: '12345678' })
   @IsString()
   @MaxLength(32)
   @MinLength(8)

@@ -25,7 +25,7 @@ export class RegisterUserdto {
     @IsNotEmpty()
     email: string
 
-    @ApiProperty({example: "50803006730015"})
+    @ApiProperty({example: "12345678"})
     @IsString()
     @IsNotEmpty()
     @MaxLength(32)

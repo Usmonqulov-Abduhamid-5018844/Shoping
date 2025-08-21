@@ -45,15 +45,15 @@ export class UserController {
     return this.userService.refreshToken(req);
   }
 
-  // @Post('password')
-  // new_password(@Body() data: EmailPassword) {
-  //   return this.userService.new_password(data);
-  // }
+  @Post('password')
+  new_password(@Body() data: EmailPassword) {
+    return this.userService.new_password(data);
+  }
 
-  // @Post('reset_password')
-  // reset_password(@Body() data: ResetPasswordDto) {
-  //   return this.userService.reset_password(data);
-  // }
+  @Post('reset_password')
+  reset_password(@Body() data: ResetPasswordDto) {
+    return this.userService.reset_password(data);
+  }
 
   @UseGuards(AuthGuard)
   @Patch('Update/:id')

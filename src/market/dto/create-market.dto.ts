@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateMarketDto {
-  @ApiProperty({ example: 'FAXA' })
+  @ApiProperty({ example: 'Uzum' })
   @IsString()
   @IsNotEmpty()
   name: string;

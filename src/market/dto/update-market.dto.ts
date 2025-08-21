@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 
 export class UpdateMarketDto {
-  @ApiProperty({ example: 'FAXA' })
+  @ApiProperty({ example: 'Uzum' })
   @IsString()
   @IsOptional()
   name: string;
