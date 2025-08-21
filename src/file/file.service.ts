@@ -1,20 +1,23 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { existsSync, unlink } from 'fs';
-import { resolve } from 'path';
+import { existsSync, mkdirSync, unlink } from 'fs';
+import { resolve, join } from 'path';
 import { catchError } from 'src/utils/chatchError';
 
 @Injectable()
 export class FileService {
-  private readonly filePath = resolve(__dirname, '..', '..', '..', 'uploads');
+  private readonly filePath = join(process.cwd(), 'uploads');
+
+  constructor() {
+
+    if (!existsSync(this.filePath)) {
+      mkdirSync(this.filePath, { recursive: true });
+    }
+  }
 
   async existFile(filename: string): Promise<boolean> {
     try {
-      const file = resolve(this.filePath, `${filename}`);
-      if (existsSync(file)) {
-        return true;
-      } else {
-        return false;
-      }
+      const file = resolve(this.filePath, filename);
+      return existsSync(file);
     } catch (error) {
       throw catchError(error);
     }
@@ -22,14 +25,13 @@ export class FileService {
 
   async deleteFile(filename: string): Promise<void> {
     try {
-      const file = resolve(this.filePath, `${filename}`);
+      const file = resolve(this.filePath, filename);
       if (!existsSync(file)) {
         throw new BadRequestException(`File does not exist: ${filename}`);
       }
       await new Promise<void>((res, rej) => {
         unlink(file, (err) => {
           if (err) rej(err);
-          ;
           res();
         });
       });

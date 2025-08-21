@@ -99,7 +99,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     InfoModule,
 
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', 'uploads'),
+      rootPath: join(process.cwd(), 'uploads'),
       serveRoot: '/upload',
     }),
 
