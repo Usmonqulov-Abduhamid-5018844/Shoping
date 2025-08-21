@@ -5,8 +5,6 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
-const Port = Number(process.env.PORT) || 3000;
-
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
@@ -37,8 +35,8 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(Port || 3000, '0.0.0.0', () => {
-    console.log(`Server started on port ${Port}`);
+  await app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server started on port ${process.env.PORT || 3000}`);
   });
 }
 
