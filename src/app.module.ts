@@ -42,8 +42,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AppController } from './app.controller';
 
 @Module({
-  
-  controllers: [AppController],
+
   imports: [
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({
@@ -109,6 +108,6 @@ import { AppController } from './app.controller';
     FileModule,
     DeleteModule,
   ],
-  controllers: [UploadController],
+  controllers: [UploadController, AppController],
 })
 export class AppModule {}
