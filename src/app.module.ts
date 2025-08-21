@@ -39,8 +39,11 @@ import { InfoModule } from './info/info.module';
 import { FileModule } from './file/file.module';
 import { DeleteModule } from './delete/delete.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { AppController } from './app.controller';
 
 @Module({
+  
+  controllers: [AppController],
   imports: [
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({
