@@ -61,7 +61,7 @@ import { ScheduleModule } from '@nestjs/schedule';
       autoLoadModels: true,
       synchronize: true,
       dialectOptions: {
-        socketPath: process.env.DB_HOST,
+        socketPath: process.env.HOST,
       },
       models: [
         User,
