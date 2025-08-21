@@ -63,7 +63,7 @@ import { AppController } from './app.controller';
       autoLoadModels: true,
       synchronize: true,
       dialectOptions: {
-        socketPath: process.env.HOST,
+        socketPath: `/cloudsql/shoping-469710:us-central1:shoping`,
       },
       models: [
         User,
