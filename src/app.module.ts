@@ -42,27 +42,41 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AppController } from './app.controller';
 
 @Module({
-
   imports: [
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
+      envFilePath: process.env.NODE_ENV === 'production' ? undefined : '.env', // prod uchun .env ishlatilmaydi
     }),
     JwtModule.register({
       global: true,
     }),
-   SequelizeModule.forRoot({
-  dialect: 'postgres',
-  username: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-  autoLoadModels: true,
-  synchronize: true,
-  dialectOptions: {
-    socketPath: `/cloudsql/shoping-469710:us-central1:shoping`,
-  },
-}),
+    SequelizeModule.forRoot({
+      dialect: 'postgres',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT) || 5432,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
+      autoLoadModels: true,
+      synchronize: true,
+      logging: false,
+      models: [
+        User,
+        Market,
+        Product,
+        Orders,
+        Savat,
+        Order_Item,
+        SupportTicket,
+        Rating,
+        Category,
+        Chat,
+        Comment,
+        Notification,
+        Tranzaksiya,
+      ],
+    }),
     UserModule,
     CategoryModule,
     RatingModule,
@@ -81,12 +95,10 @@ import { AppController } from './app.controller';
     CommentModule,
     TranzaktionModule,
     InfoModule,
-
     ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), 'uploads'),
       serveRoot: '/upload',
     }),
-
     FileModule,
     DeleteModule,
   ],
