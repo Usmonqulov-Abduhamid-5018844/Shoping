@@ -54,12 +54,12 @@ import { AppController } from './app.controller';
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: String(process.env.DB_HOST),
-      username: String(process.env.DB_USER),
-      password: String(process.env.DB_PASS),
-      port: Number(process.env.DB_PORT),
+      host: String(process.env.HOST),
+      username: String(process.env.NAME),
+      password: String(process.env.PASS),
+      port: Number(process.env.PORTS),
       logging: false,
-      database: process.env.DB_NAME,
+      database: process.env.DB,
       autoLoadModels: true,
       synchronize: true,
       dialectOptions: {
